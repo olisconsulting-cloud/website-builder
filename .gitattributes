@@ -1,0 +1,34 @@
+# Zeilenenden ein für alle Mal festlegen.
+#
+# Ohne diese Datei entscheidet jeder Rechner selbst, ob Zeilen mit LF oder
+# CRLF enden. Windows schreibt sie beim Auschecken um — und dann meldet git
+# ganze Dateien als geändert, obwohl niemand etwas geändert hat. Beim ersten
+# Commit kostet diese Regel nichts; später kostet sie eine Umschreibung des
+# gesamten Verlaufs.
+#
+# `text=auto` heißt: git erkennt Textdateien selbst.
+# `eol=lf` heißt: auch im Arbeitsordner bleibt es bei LF — auf jedem System.
+# Node, Git Bash und alle Editoren dieses Projekts kommen damit zurecht.
+* text=auto eol=lf
+
+# Binärdateien nie anfassen. Eine umgeschriebene Zeile in einem Bild oder
+# einer Schrift macht die Datei kaputt.
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.avif   binary
+*.webp   binary
+*.pdf    binary
+*.woff   binary
+*.woff2  binary
+*.ttf    binary
+*.otf    binary
+*.mp4    binary
+*.webm   binary
+
+# Erzeugte Dateien aus dem Diff heraushalten: sie sind lang, ändern sich oft
+# und niemand liest sie Zeile für Zeile. Sie bleiben versioniert, tauchen im
+# Vergleich aber nur noch als „geändert" auf.
+package-lock.json  linguist-generated=true -diff

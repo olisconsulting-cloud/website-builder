@@ -1,0 +1,47 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Node
+node_modules/
+.npm
+*.tsbuildinfo
+
+# Next.js
+.next/
+out/
+build/
+next-env.d.ts
+
+# Test- und Prüf-Artefakte
+.lighthouseci/
+playwright-report/
+test-results/
+coverage/
+pruefserver.log
+
+# Handkopien vor Umbauten — gehören nicht in die Versionierung, sie IST die Sicherung
+_sicherung-*/
+
+# Claude Code — lokale Übersteuerungen, nicht teilen
+#
+# Die Muster brauchen `**/`, und das ist kein Schmuck: Ein Muster mit einem
+# Schrägstrich in der Mitte ist auf DIESEN Ordner verankert. `.claude/.doctrine-lock/`
+# fing deshalb nur den Riegel im Wurzelverzeichnis — der Hook schreibt ihn aber in
+# das Arbeitsverzeichnis, und das ist beim Bauen `sites/<kunde>/`.
+**/.claude/settings.local.json
+**/.claude/.doctrine-lock/
+CLAUDE.local.md
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp

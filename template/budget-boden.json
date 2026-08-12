@@ -1,0 +1,20 @@
+{
+  "_": "Gemessener Rahmen-Boden. Wird von scripts/check-budget.mjs gelesen. Nicht schaetzen.",
+
+  "next": "16.2.12",
+  "react": "19.2.4",
+  "bodenBytes": 154347,
+  "gemessen": "2026-07-28",
+  "eigenerCodeMaxBytes": 40960,
+
+  "wieGemessen": [
+    "1. In app/page.tsx den Import von KontaktFormular entfernen und <KontaktFormular /> durch <p>x</p> ersetzen.",
+    "2. Pruefen, dass im Renderpfad keine Datei 'use client' traegt: grep -rn 'use client' app/ components/ ausser components/ui/ und der Formular-Datei.",
+    "3. npm run build && npm run check:perf",
+    "4. Aus dem neuesten .lighthouseci/lhr-*.json den Wert resource-summary -> resourceType 'script' -> transferSize ablesen.",
+    "5. Diesen Wert als bodenBytes eintragen, next/react/gemessen nachziehen, app/page.tsx zurueckstellen.",
+    "6. In lighthouserc.json resource-summary:script:size auf bodenBytes + eigenerCodeMaxBytes setzen."
+  ],
+
+  "warum": "Der Boden ist React plus Next-Laufzeit und nicht beeinflussbar. Ein Budget unterhalb davon meldet dauerhaft Rot und ist damit wertlos; ein Budget ohne Boden-Abzug verwechselt Framework-Wachstum mit eigener Nachlaessigkeit. Begruendung in doctrine/budget.md."
+}

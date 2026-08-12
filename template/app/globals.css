@@ -1,0 +1,254 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: var(--font-sans);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    /* --input und --ring tragen NICHT den shadcn-Standard (0.922 / 0.708).
+       Gemessen am 31.07.2026: Der Rand eines Schreibfeldes hielt damit 1,26:1,
+       der Fokusring 2,58:1 — WCAG 1.4.11 und 2.4.7 verlangen 3:1. axe meldet
+       das nicht, `npm run check:kontrast` schon. --border bleibt hell: es
+       traegt Trennlinien, und die schulden keinen Mindestkontrast. */
+    --input: oklch(0.65 0 0);
+    /* 0.25, nicht 0.65: shadcn legt den Ring mit `ring-ring/50` auf, also
+       halbdurchsichtig. Gemessen liefert 0.65 dann 1,69:1, 0.25 liefert 3,15:1. */
+    --ring: oklch(0.25 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    /* Deckend statt 15 % Weiss: halbdurchsichtig ueber fast schwarzem Grund
+       ergibt keinen brauchbaren Rand. 0.5 haelt 3:1 gegen oklch(0.145). */
+    --input: oklch(0.5 0 0);
+    /* Ebenfalls halbdurchsichtig, hier gegen fast schwarzen Grund: 0.556 gibt
+       1,88:1, 0.85 gibt 3,8:1. */
+    --ring: oklch(0.85 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}
+
+/* ==========================================================================
+   MARKEN-EBENE — das hier wird pro Kunde getauscht, sonst nichts.
+
+   Alles darüber ist von shadcn erzeugt und wird beim nächsten `shadcn add`
+   erneut angefasst. Alles ab hier gehört dem Projekt.
+
+   Die Werte unten sind bewusst NEUTRAL, nicht "schön". Sie sind ein
+   Startpunkt, kein Entwurf. Wer sie so lässt, hat keine Marke gebaut,
+   sondern nur nicht entschieden.
+   ========================================================================== */
+
+@theme {
+  /* --- Maße ------------------------------------------------------------ */
+  /* max-w-inhalt: die Spalte, in der die Seite lebt. */
+  --container-inhalt: 72rem;
+  /* max-w-lesetext: 62ch statt der englischen 65ch — deutsche Zeilen laufen
+     bei gleicher Zeichenzahl optisch länger (doctrine/de-kalibrierung.md §1). */
+  --container-lesetext: 62ch;
+
+  /* --- Vertikaler Rhythmus --------------------------------------------- */
+  /* py-abschnitt / gap-abschnitt: EIN Wert für den Abstand zwischen
+     Abschnitten. Wer hier ansetzt, verschiebt die ganze Seite gleichmäßig. */
+  --spacing-abschnitt: 5rem;
+  --spacing-abschnitt-eng: 3rem;
+
+  /* --- Typografie-Rollen ------------------------------------------------ */
+  /* Größen sind STRUKTUR, nicht Optik: Sie stellen die Rangfolge her, ohne
+     die zu bestimmen. Der Abstand zwischen den Stufen liegt bewusst über 1,25
+     — enger liest der Detektor (und das Auge) es als „keine Hierarchie".
+     Die konkreten Werte gehören zur Marken-Ebene und werden pro Kunde
+     nachgezogen; ersatzlos streichen darf man sie nicht. */
+  --text-display-1: clamp(2.25rem, 1.55rem + 3.4vw, 4rem);
+  --text-display-2: clamp(1.75rem, 1.45rem + 1.5vw, 2.5rem);
+  --text-display-3: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+
+  /* tracking-display: −0.04em löst die Kollision zwischen taste
+     (tracking-tighter = −0.05em) und impeccables Untergrenze −0.04em auf.
+     Nicht ändern, ohne doctrine/de-kalibrierung.md §3 zu lesen. */
+  --tracking-display: -0.04em;
+  /* leading-display: 1.05 statt leading-none. Versal-Ä/Ö/Ü ragen über die
+     Versalhöhe; bei 1.0 werden die Punkte abgeschnitten (§2). */
+  --leading-display: 1.05;
+}
+
+@layer base {
+  html {
+    /* Trennung deutscher Komposita. Wirkt nur mit <html lang="de"> — und
+       auch dann NICHT überall: In Edge 150 (Chromium) auf Windows bleibt
+       `hyphens: auto` wirkungslos, gemessen mit einer Gegenprobe. Das Wort
+       „Barrierefreiheitserklärung" blieb in einem 200-px-Kasten 418 px breit.
+       Deshalb steht direkt darunter das Sicherheitsnetz. */
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    /* `break-word` bricht ein Wort NUR, wenn es sonst gar nicht passt. Das ist
+       etwas anderes als das in `doctrine/de-kalibrierung.md` §4 zu Recht
+       abgelehnte `anywhere`, das auch Wörter zerlegt, die noch gepasst hätten,
+       und die Mindestbreite von Rastern verfälscht.
+       Ohne dieses Netz sprengt genau ein deutsches Kompositum das Layout:
+       gemessen 405 statt 320 px auf der Seite Barrierefreiheitserklärung. */
+    overflow-wrap: break-word;
+
+    /* Weiches Scrollen für Ankerlinks — ohne Bibliothek, ohne KB.
+       Der Block für `prefers-reduced-motion` weiter unten hebt es wieder auf. */
+    scroll-behavior: smooth;
+    /* Damit ein Sprungziel nicht unter der Kopfzeile klebt. */
+    scroll-padding-top: 5rem;
+  }
+
+  /* Kein einzelnes Wort in der letzten Zeile. */
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  /* Überschriften brechen ausgeglichen statt "lang / kurz / ein Wort". */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  /* Bewegung ist ein Angebot, keine Zumutung. Gilt für alles, auch für
+     Bibliotheken, die ihre eigene Meinung mitbringen. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Display-Schrift auf Deutsch geeicht. Auf jede Headline anwenden, die groß
+   gesetzt wird — die Reserve oben fängt Ä, Ö und Ü ab, auch bei `uppercase`. */
+@utility display-de {
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+  /* Reserve für die Punkte auf Ä, Ö und Ü. Gemessen: Bei `leading: 1.05`
+     ragt die Glyphe rund 0.11em über den Zeilenkasten hinaus — 0.08em
+     reichten nicht. Der Wert ist in em, skaliert also mit der Schriftgröße. */
+  padding-top: 0.14em;
+}
+
+/* Fließtext-Maß plus Trennung. Für jeden längeren deutschen Absatz. */
+@utility lesetext {
+  max-width: var(--container-lesetext);
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
