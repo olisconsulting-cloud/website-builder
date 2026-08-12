@@ -7,6 +7,34 @@ Messbrowser Edge 150.0.4078.99 (Chrome ist auf diesem Rechner nicht installiert)
 Diese Datei ist zweierlei: der Nachweis, dass das Gerüst selbst die Tore besteht — und die
 Vorlage für die `QA.md` jeder daraus gebauten Seite. **Ohne Zahlen gilt keine Seite als fertig.**
 
+> ## ⚠ Nachmessung am 12.08.2026: `check:all` läuft nicht durch
+>
+> Ein frischer Klon dieses Repos wurde neu installiert und komplett durchgemessen. **Zwei
+> Zusicherungen unten halten dabei nicht.** Die Zahlen stehen trotzdem unverändert da — sie
+> sind echt gemessen, nur eben am 28.07. auf einem anderen Rechnerzustand. Genau darum bekommt
+> jede Seite ihre eigene `QA.md`: **eine übernommene Messung ist eine Behauptung.**
+>
+> | Was | Hier zugesichert | Frischer Klon, 12.08. | |
+> |---|---|---|---|
+> | LCP | 2490 ms | **3097 ms** (3 Läufe: 3097 / 3111 / 3111) | reißt |
+> | Schriften laut Lighthouse | 46 KB | **146,7 KB** (3× identisch) | reißt |
+>
+> **Zum LCP:** Der Wert ist last- und hardwareabhängig; der Messlauf lief auf einem beschäftigten
+> Rechner. Ungedrosselt ist die Seite weiter sofort da. Das ändert nichts daran, dass das Tor
+> unter genau diesen Bedingungen reißt — ein Tor, das nur auf einem ruhigen Rechner hält, ist
+> ein Hinweis, kein Tor.
+>
+> **Zur Schrift ist der Befund interessanter, weil sich zwei Messgeräte widersprechen.** Direkt
+> am laufenden Server gemessen (Playwright, `content-length` aller Schriftantworten) lädt die
+> Seite **zwei Dateien mit zusammen 44,8 KB** — das deckt sich mit den 46 KB unten. Lighthouse
+> meldet für dieselbe Seite 146,7 KB unter `resource-summary:font:size`. Im Build liegen fünf
+> woff2-Dateien mit zusammen 74,2 KB; der Lighthouse-Wert ist fast genau deren Doppeltes.
+> **Die Ursache ist nicht geklärt.** Bevor jemand hier Schriften wegoptimiert: erst klären, was
+> Lighthouse zählt. Die übertragene Last ist nach direkter Messung nicht das Problem.
+>
+> Wer diese Vorlage für eine echte Seite benutzt, ersetzt ohnehin jede Zahl unten durch eine
+> eigene. Dieser Kasten fliegt dann mit raus.
+
 ---
 
 ## 1. Bau und Typen

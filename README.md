@@ -52,11 +52,21 @@ gibt es, weil grüne Standard-Tore etwas durchgelassen haben:
 
 ```bash
 git clone https://github.com/olisconsulting-cloud/website-builder.git
-cd website-builder
+cd website-builder/template
 
-# 1. Das Gerüst einmal prüfen — was hier rot meldet, meldet später bei jeder Seite rot
-cd template && npm install && npm run check:all
+npm install
+npx playwright install chromium   # für die Barrierefreiheits- und Kontrastprüfung
+npm run check:all
 ```
+
+**Was du dabei sehen wirst:** `check:all` läuft nicht komplett durch. Zwei Ladezeit-Tore reißen —
+LCP und die von Lighthouse gemeldete Schriftgröße. Beides ist gemessen, dokumentiert und
+eingeordnet, oben in [`template/QA.md`](template/QA.md). Beim Schrift-Befund widersprechen sich
+zwei Messgeräte, und die direkte Messung spricht für das Gerüst. Bau, Typen, Lint,
+Barrierefreiheit, Deutsch-Härtetest und Kontrast sind grün.
+
+Das steht hier, statt die Grenzen leise hochzusetzen. Ein Tor, das man beim Reißen verstellt,
+ist danach keins mehr.
 
 Dann in Claude Code den Ordner öffnen und den Ablauf starten:
 
@@ -79,10 +89,14 @@ Zahlen kein „fertig", ohne ausdrückliches Ja kein Deploy.
 
 ### Hinweis für macOS und Linux
 
-Diese Werkstatt ist auf Windows entstanden. An zwei Stellen stehen deshalb PowerShell-Befehle
-im Text — beim Freiräumen von Port 3111 in `.claude/skills/website/SKILL.md`. Die Prüfskripte
-selbst sind plattformneutral; nur die Suche nach Playwrights Chromium in `check-perf.mjs` nimmt
-einen Windows-Pfad und braucht auf anderen Systemen eine Zeile Anpassung.
+Diese Werkstatt ist auf Windows entstanden und dort gemessen. Die Prüfskripte laufen
+plattformneutral — `check-perf.mjs` sucht den Messbrowser an den üblichen Stellen aller drei
+Systeme und nimmt sonst `CHROME_PATH`.
+
+Was bleibt: In `.claude/skills/website/SKILL.md` stehen zwei PowerShell-Befehle zum Freiräumen
+von Port 3111. Das Äquivalent ist `lsof -ti:3111 | xargs kill -9`. Und die Messwerte in
+`template/QA.md` stammen von einem Windows-Rechner; eigene Zahlen sehen anders aus, was der
+Grund ist, warum jede Seite ihre eigene `QA.md` bekommt.
 
 ## Der Rest ist Doktrin
 
