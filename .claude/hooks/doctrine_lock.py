@@ -56,6 +56,14 @@ def main() -> int:
 
     path = PurePosixPath(raw_path.replace("\\", "/"))
     wanted = DOCTRINES.get(path.name)
+
+    # doctrine/reference/*.md sind die Playbooks von impeccable. Sie tragen
+    # denselben Inhalt wie die Doktrin selbst, nur aufgeteilt - ohne diese Zeile
+    # holte ein Read von reference/layout.md die zweite Doktrin an der Sperre
+    # vorbei in den Kontext. Genau das soll sie verhindern.
+    if wanted is None and "reference" in path.parts and path.suffix == ".md":
+        wanted = "impeccable"
+
     # Nur die echten Doktrin-Dateien im doctrine/-Ordner. de-kalibrierung.md und
     # budget.md sind Ueberstimmungs-Dateien und werden nie gesperrt.
     if wanted is None or "doctrine" not in path.parts:
@@ -76,7 +84,8 @@ def main() -> int:
         sys.stderr.write(
             "BLOCKIERT durch .claude/hooks/doctrine_lock.py\n\n"
             f"  Diese Session ist auf die Doktrin `{current}` festgelegt.\n"
-            f"  `doctrine/{path.name}` waere die zweite - das ergibt Matsch, nicht\n"
+            f"  `doctrine/{'reference/' if 'reference' in path.parts else ''}{path.name}` "
+            f"waere die zweite - das ergibt Matsch, nicht\n"
             "  doppelte Qualitaet (Craft-Principle 1: Eine Stimme fuehrt).\n\n"
             "Variantenvergleich gehoert in eine FRISCHE Session:\n"
             f"  sites/<projekt>/variants/{wanted}/ mit eigener DOCTRINE.md.\n\n"

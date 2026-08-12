@@ -37,8 +37,21 @@ Design-Doktrinen gleichzeitig im Kontext ergeben Matsch. Als Datei lädt der Rou
 - Ein Kommentarkopf mit Herkunftsangabe wurde vorangestellt.
 - Der Text selbst ist inhaltlich unverändert.
 
-Der Detektor des Projekts (`npx impeccable detect`) wird **nicht** mitgeliefert, sondern zur
-Laufzeit über npm bezogen. Er ist in dieser Werkstatt Messgerät, nicht Doktrin.
+### `doctrine/reference/` — 29 Playbooks, gleiche Quelle
+
+Dieselbe Herkunft und dieselbe Lizenz. Die Doktrin verweist auf sie („load the one playbook that
+owns the request"); ohne sie liefe die Anweisung ins Leere. **Wortgleich übernommen**, im
+Original unter `.agents/skills/impeccable/reference/`.
+
+Übernommen wurde **genau die Teilmenge, auf die `impeccable.md` verweist** — nicht der ganze
+Ordner. Weggelassen: die Playbooks für native Apps (`ios.md`, `android.md`, `*.native.md`) und
+die Infrastruktur des Original-Skills (`degraded/`, `agents/*.toml`). Einordnung und Grenzen
+stehen in [`doctrine/reference/LIESMICH.md`](doctrine/reference/LIESMICH.md) — diese Datei ist
+eigene Arbeit, nicht Teil des Originals.
+
+**Nicht mitgeliefert:** die `scripts/*.mjs` des Original-Skills. Der Detektor daraus
+(`npx impeccable detect`) wird zur Laufzeit über npm bezogen — er ist in dieser Werkstatt
+Messgerät, nicht Doktrin. Der Rest gehört zu einem Ablauf, den diese Werkstatt nicht benutzt.
 
 ## 3. Fünf Skills unter `.claude/skills/`
 
