@@ -71,8 +71,12 @@ wird geblockt, nicht nur abgeraten. Wenn der Hook blockt, ist das kein Fehler �
 
 ## `ui-ux-pro-max` ist Datenlieferant, nicht Ratgeber
 
-Nie als Skill triggern (46 KB, zweite Meinung im Fenster). Nur als Bash-Abfrage, wenn eine
-konkrete Frage offen ist:
+**Optional** — dieser Skill wird hier nicht mitgeliefert. Er muss global installiert sein
+(`~/.claude/skills/ui-ux-pro-max/`); wer ihn nicht hat, überspringt diesen Abschnitt
+ersatzlos. Nichts in dieser Werkstatt hängt davon ab.
+
+Ist er da: nie als Skill triggern (46 KB, zweite Meinung im Fenster). Nur als Bash-Abfrage,
+wenn eine konkrete Frage offen ist:
 
 ```bash
 python ~/.claude/skills/ui-ux-pro-max/scripts/search.py "<frage>" --stack shadcn --max-results 2
