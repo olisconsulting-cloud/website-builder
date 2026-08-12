@@ -19,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Diese MIT-Lizenz deckt den eigenen Anteil dieses Repositorys ab.
-
-Teile in `doctrine/` und `.claude/skills/` stammen aus fremden Repositorys und stehen unter
-ihrer jeweils eigenen Lizenz. Welche Datei woher kommt, was daran geaendert wurde und wo der
-zugehoerige Lizenztext liegt, steht in THIRD-PARTY-LICENSES.md.

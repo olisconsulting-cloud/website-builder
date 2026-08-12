@@ -4,7 +4,8 @@ Dieses Repository enthält Material aus drei fremden Repositorys. Alle drei steh
 freien Lizenzen (MIT bzw. Apache 2.0), die das Mitliefern erlauben, solange Copyright-Vermerk
 und Lizenztext mitgehen. Genau das leistet diese Datei.
 
-**Der eigene Anteil steht unter MIT** — siehe [LICENSE](LICENSE).
+**Der eigene Anteil steht unter MIT** — siehe [LICENSE](LICENSE). Diese MIT-Lizenz deckt genau
+den eigenen Anteil ab, nicht die unten aufgeführten Bestandteile: die behalten ihre eigene.
 
 ---
 
