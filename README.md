@@ -16,7 +16,7 @@ Der Kern in einem Satz: **Kein „fertig" ohne `QA.md` mit Messwerten.**
 |---|---|
 | `template/` | Next.js 16 · React 19 · Tailwind v4 · shadcn/ui · TypeScript. Wird pro Auftrag nach `sites/kunde-name/` kopiert. Enthält sechs Prüfskripte. |
 | `doctrine/` | Zwei Design-Doktrinen — plus zwei eigene Dateien, die sie **überstimmen**: Deutsch-Kalibrierung und Ladezeit-Budget. |
-| `.claude/skills/` | Acht Skills. `website` führt den Bau in sieben Stufen, `router` lädt die Doktrin, `grundschicht` deckt ab, was dem Gerüst fehlt. |
+| `.claude/skills/` | Zehn Skills. `website` führt den Bau in sieben Stufen, `router` lädt die Doktrin, `deutsche-copy-review` prüft jeden Text vor dem Einbau. Dazu der vollständige `impeccable`-Skill — auf „nur auf Zuruf" gestellt, damit er die Doktrin-Wahl nicht vorwegnimmt. |
 | `.claude/hooks/` | Zwei Python-Hooks, die zwei Regeln **deterministisch** durchsetzen — statt sie dem Modell als Vorsatz zu überlassen. |
 | `decisions/` | Architekturentscheidungen mit Begründung und Rückweg. |
 
@@ -99,5 +99,5 @@ UWG): [REFERENCES.md](REFERENCES.md).
 ## Lizenz
 
 Der eigene Anteil steht unter [MIT](LICENSE). Die beiden Design-Doktrinen in `doctrine/` und
-fünf der acht Skills stammen aus fremden Repos und behalten ihre Lizenz — Herkunft, Copyright
+sechs der zehn Skills stammen aus fremden Repos und behalten ihre Lizenz — Herkunft, Copyright
 und Lizenztexte in [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md).

@@ -37,21 +37,29 @@ Design-Doktrinen gleichzeitig im Kontext ergeben Matsch. Als Datei lädt der Rou
 - Ein Kommentarkopf mit Herkunftsangabe wurde vorangestellt.
 - Der Text selbst ist inhaltlich unverändert.
 
-### `doctrine/reference/` — 29 Playbooks, gleiche Quelle
+### `.claude/skills/impeccable/` — der vollständige Skill, gleiche Quelle
 
-Dieselbe Herkunft und dieselbe Lizenz. Die Doktrin verweist auf sie („load the one playbook that
-owns the request"); ohne sie liefe die Anweisung ins Leere. **Wortgleich übernommen**, im
-Original unter `.agents/skills/impeccable/reference/`.
+| | |
+|---|---|
+| **Herkunft** | dasselbe Repo, Stand `main` (SKILL.md meldet v4.0.4) — im Original unter `.agents/skills/impeccable/` |
+| **Lizenz** | Apache License 2.0, derselbe Text |
+| **Geändert** | Nein am Inhalt. Der Ordner ist **vollständig** übernommen: `SKILL.md`, `reference/` (34 Playbooks), `scripts/`, `agents/`. |
 
-Übernommen wurde **genau die Teilmenge, auf die `impeccable.md` verweist** — nicht der ganze
-Ordner. Weggelassen: die Playbooks für native Apps (`ios.md`, `android.md`, `*.native.md`) und
-die Infrastruktur des Original-Skills (`degraded/`, `agents/*.toml`). Einordnung und Grenzen
-stehen in [`doctrine/reference/LIESMICH.md`](doctrine/reference/LIESMICH.md) — diese Datei ist
-eigene Arbeit, nicht Teil des Originals.
+Hinzugefügt wurde eine eigene Datei: [`LIESMICH.md`](.claude/skills/impeccable/LIESMICH.md) —
+sie ordnet den Skill in diese Werkstatt ein und ist **nicht** Teil des Originals.
 
-**Nicht mitgeliefert:** die `scripts/*.mjs` des Original-Skills. Der Detektor daraus
-(`npx impeccable detect`) wird zur Laufzeit über npm bezogen — er ist in dieser Werkstatt
-Messgerät, nicht Doktrin. Der Rest gehört zu einem Ablauf, den diese Werkstatt nicht benutzt.
+**Zwei Dinge, die diese Werkstatt am Skill anders handhabt** — beide außerhalb seiner Dateien,
+er selbst bleibt unangetastet:
+
+1. Er steht in `.claude/settings.json` auf `user-invocable-only`. Er triggert also nicht von
+   selbst, sondern nur auf `/impeccable`. Sonst wäre die Doktrin-Wahl entschieden, bevor der
+   Router sie trifft.
+2. `.claude/hooks/doctrine_lock.py` behandelt jede `.md` in seinem Ordner wie die Doktrin
+   selbst. Wer in einer `taste`-Sitzung ein Playbook liest, wird geblockt.
+
+Die Doktrin-Datei `doctrine/impeccable.md` (Abschnitt 2 oben) verweist für Einzelaufgaben in
+diesen Ordner. Ihre 32 Playbook-Verweise wurden dafür auf den neuen Pfad umgebogen — das ist
+die einzige Textänderung und im Änderungsvermerk oben schon genannt.
 
 ## 3. Fünf Skills unter `.claude/skills/`
 
@@ -83,7 +91,8 @@ Unter MIT dieses Repositorys, nicht fremd:
 - `doctrine/de-kalibrierung.md` und `doctrine/budget.md` — die zwei Dateien, die beide
   Doktrinen überstimmen
 - `template/` vollständig, samt der sechs Prüfskripte in `template/scripts/`
-- `.claude/skills/website/`, `.claude/skills/router/`, `.claude/skills/grundschicht/`
+- `.claude/skills/website/`, `.claude/skills/router/`, `.claude/skills/grundschicht/`,
+  `.claude/skills/deutsche-copy-review/`
 - `.claude/hooks/guard.py` und `.claude/hooks/doctrine_lock.py`
 - `decisions/`, `AGENTS.md`, `CONTEXT.md`, `REFERENCES.md`, `README.md`
 

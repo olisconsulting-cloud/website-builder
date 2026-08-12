@@ -5,6 +5,7 @@
   "enabledMcpjsonServers": ["shadcn", "context7", "chrome-devtools"],
 
   "skillOverrides": {
+    "impeccable": "user-invocable-only",
     "frontend-design": "off",
     "motion-design": "off",
     "ui-ux-pro-max": "user-invocable-only"

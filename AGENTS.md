@@ -23,6 +23,10 @@ Der Ordner ist die Werkstatt: `template/` wird pro Auftrag nach `sites/kunde-nam
 - **Taucht eine zweite Doktrin im Kontext auf: abbrechen, nicht mischen.**
 - `doctrine/de-kalibrierung.md` und `doctrine/budget.md` werden VOR der Doktrin gelesen und
   überstimmen sie bei Widerspruch. Kein Aushandeln.
+- Der volle `impeccable`-Skill liegt unter `.claude/skills/impeccable/` und steht auf
+  **„nur auf Zuruf"** (`/impeccable <befehl>`). Er triggert nicht von selbst — sonst wäre die
+  Doktrin-Wahl entschieden, bevor der Router sie trifft. `doctrine/impeccable.md` bleibt die
+  Datei, die der Router liest; sie verweist für Einzelaufgaben in den Skill-Ordner.
 - **Stillgelegt** in `.claude/settings.json`: `frontend-design`, `motion-design`,
   `ui-ux-pro-max`. Das sind global installierte Design-Skills, die von selbst triggern — jeder
   von ihnen ist eine dritte Doktrin im Kontext. Wer sie nicht installiert hat, lässt die
@@ -35,9 +39,9 @@ Der Ordner ist die Werkstatt: `template/` wird pro Auftrag nach `sites/kunde-nam
   erwünscht, wenn er belegt ist.
 - Bei dünnem Briefing: höchstens fünf Rückfragen. Alles Übrige wird angenommen und steht
   sichtbar in `BRIEFING.md` unter „Angenommen, nicht bestätigt".
-- Nutzertexte werden vor dem Einbau auf Deutsch geprüft: Anglizismen, Nominalstil, Füllwörter,
-  generische Modell-Phrasen. Wer den Skill `deutsche-copy-review` installiert hat, nimmt ihn;
-  sonst gilt `doctrine/de-kalibrierung.md` §3 als Prüfliste.
+- Nutzertexte laufen durch den Skill `deutsche-copy-review`, bevor sie in den Code gehen.
+  **Die Copy-Hoheit liegt dort, nicht bei der Design-Doktrin** — bei Widerspruch über eine
+  Formulierung gewinnt das Copy-Review.
 - CONTEXT.md ist Living-Doc — wenn `last_updated` >30 Tage: "Aktueller Stand" review.
 - Craft-Principles: siehe `decisions/000-craft-principles.md` — bei Konflikt mit einer Säule:
   Entscheidung anpassen, nicht Säulen.

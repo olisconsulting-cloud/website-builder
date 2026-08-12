@@ -55,19 +55,23 @@ def main() -> int:
         return 0
 
     path = PurePosixPath(raw_path.replace("\\", "/"))
-    wanted = DOCTRINES.get(path.name)
 
-    # doctrine/reference/*.md sind die Playbooks von impeccable. Sie tragen
-    # denselben Inhalt wie die Doktrin selbst, nur aufgeteilt - ohne diese Zeile
+    # Fall 1: der Skill-Ordner. Seit der volle impeccable-Skill mitgeliefert wird,
+    # liegen SKILL.md und die 34 Playbooks unter .claude/skills/impeccable/. Sie
+    # tragen denselben Inhalt wie die Doktrin, nur aufgeteilt - ohne diesen Zweig
     # holte ein Read von reference/layout.md die zweite Doktrin an der Sperre
-    # vorbei in den Kontext. Genau das soll sie verhindern.
-    if wanted is None and "reference" in path.parts and path.suffix == ".md":
+    # vorbei in den Kontext. Der Ordner wird deshalb behandelt wie die Doktrin
+    # selbst. Nur Text sperren: die scripts/*.mjs sind Werkzeuge, keine Meinung.
+    parts = path.parts
+    if "impeccable" in parts and "skills" in parts and path.suffix == ".md":
         wanted = "impeccable"
 
-    # Nur die echten Doktrin-Dateien im doctrine/-Ordner. de-kalibrierung.md und
-    # budget.md sind Ueberstimmungs-Dateien und werden nie gesperrt.
-    if wanted is None or "doctrine" not in path.parts:
-        return 0
+    # Fall 2: die Doktrin-Dateien in doctrine/. de-kalibrierung.md und budget.md
+    # sind Ueberstimmungs-Dateien und werden nie gesperrt.
+    else:
+        wanted = DOCTRINES.get(path.name)
+        if wanted is None or "doctrine" not in parts:
+            return 0
 
     cwd = payload.get("cwd") or os.getcwd()
     lock = lock_path(cwd, str(payload.get("session_id") or ""))
@@ -84,8 +88,7 @@ def main() -> int:
         sys.stderr.write(
             "BLOCKIERT durch .claude/hooks/doctrine_lock.py\n\n"
             f"  Diese Session ist auf die Doktrin `{current}` festgelegt.\n"
-            f"  `doctrine/{'reference/' if 'reference' in path.parts else ''}{path.name}` "
-            f"waere die zweite - das ergibt Matsch, nicht\n"
+            f"  `{raw_path}` waere die zweite - das ergibt Matsch, nicht\n"
             "  doppelte Qualitaet (Craft-Principle 1: Eine Stimme fuehrt).\n\n"
             "Variantenvergleich gehoert in eine FRISCHE Session:\n"
             f"  sites/<projekt>/variants/{wanted}/ mit eigener DOCTRINE.md.\n\n"
